@@ -16,6 +16,8 @@ if (!emailExists($email)) {
 
 	if( $xml = file_get_contents( '../data/customer.xml') ) {
 		$xmldoc->loadXML( $xml, LIBXML_NOBLANKS );
+		//Defining XPATH
+		$xpath = new DOMXPath($xmldoc);
 		// find the CustomerList tag
 		$root = $xmldoc->getElementsByTagName('CustomerList')->item(0);
 		// create the <Customer> tag
@@ -23,6 +25,13 @@ if (!emailExists($email)) {
 		// add the Customer tag to the <CustomerList> tag
 		$root->appendChild($customer);
 		// create other elements and add it to the <Customer> tag.
+
+		$id = generateID($xpath);
+		$idElement = $xmldoc->createElement('Id');
+		$customer->appendChild($idElement);
+		$idText = $xmldoc->createTextNode($id);
+		$idElement->appendChild($idText);
+
 		$emailElement = $xmldoc->createElement('Email');
 		$customer->appendChild($emailElement);
 		$emailText = $xmldoc->createTextNode($email);
@@ -72,6 +81,22 @@ function emailExists($email) {
 		}
 	}
 	return false;
+}
+
+//Generate ID for new Customer
+//Using XPATH
+function generateID($xpath) {
+		$result = $xpath->query('(//Customer/Id)[last()]');
+		// Getting last element
+		if($result->length > 0) {
+			$node = $result->item(0);
+			$id = $node->nodeValue;
+			$id = $id + 1;
+			return $id;
+		} 
+		else {
+  			return 1;
+		}
 }
 
 
