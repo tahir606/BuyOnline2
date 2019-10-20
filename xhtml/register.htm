@@ -1,0 +1,61 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" 
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+	<title>Buy Online</title>
+</head>
+
+<body>
+	<h3>Buy Online</h3>
+	<h4>Customer Registration</h4>
+	<br/><br/>
+	<form method="post" action="../php/register.php" onsubmit="return checkForm()">
+		Email : <input id="email" type="text" name="email"><br><br>
+		First Name : <input id="firstName" type="text" name="firstName"><br><br>
+		Last Name : <input id="lastName" type="text" name="lastName"><br><br>
+		Password : <input id="password" type="password" name="password"><br><br>
+		Confirm Password : <input id="confirmPassword" type="password" name="confirmPassword"><br><br>
+		Phone (optional) : <input id="phoneNumber" type="text" name="phoneNumber"><br><br>
+		<input type="submit" value="Register">
+		<p id="errorMessage"></p>
+	</body>
+	<script type="text/javascript">	
+		function checkForm() {
+			var email = document.getElementById('email').value;
+			var firstName = document.getElementById('firstName').value;
+			var lastName = document.getElementById('lastName').value;
+			var password = document.getElementById('password').value;
+			var confirmPassword = document.getElementById('confirmPassword').value;
+			var phoneNumber = document.getElementById('phoneNumber').value;
+
+			console.log(email, firstName, lastName, password, confirmPassword, phoneNumber);
+
+			var errorMessage = document.getElementById('errorMessage');
+
+			if (email == '' || firstName == '' || lastName == '' || password == '' || confirmPassword == '' ) {	
+				errorMessage.innerText = "All mandatory fields must be filled.";
+				return false;
+			}
+
+			if (password != confirmPassword) {
+				errorMessage.innerText = "Passwords do not match";
+				return false;
+			}
+
+			//Check if phone number only contains numbers
+			//Regex Created with the help of https://regexr.com/3c53v
+			if (phoneNumber != '') {
+				if (!(/^[(]{0,1}[0][0-9]{1,2}[)]{0,1}[\./0-9]{1,8}$/.test(phoneNumber))) {
+					errorMessage.innerText = "Invalid Phone Number. Phone Number must follow the format (0d)dddddddd";
+					return false;
+				} 
+			}
+
+			console.log('Everything validated successfully');
+
+			return true;	
+		}
+	</script>
+	</html>
