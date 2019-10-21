@@ -1,12 +1,11 @@
-<?xml version="1.0"?>
+<?xml version="1.0" encoding="utf-8"?>
 <CustomerList>
-  <script type="text/javascript" charset="utf-8" id="zm-extension"/>
   <Customer>
     <Id>1</Id>
-    <Email>tahir60652@gmail.com</Email>
+    <Email>tahir606123</Email>
     <FirstName>Tahir</FirstName>
     <LastName>Shakir</LastName>
     <Password>123</Password>
-    <PhoneNumber>(09)999999</PhoneNumber>
+    <PhoneNumber/>
   </Customer>
 </CustomerList>

@@ -10,8 +10,10 @@
 <body>
 	<h3>Buy Online</h3>
 	<h4>Customer Registration</h4>
-	<br/><br/>
-	<form method="post" action="../php/register.php" onsubmit="return checkForm()">
+	<br/>
+	<a href="buyonline.htm">Back</a>
+	<br/><br/><br/>
+	<form onsubmit="return checkForm()">
 		Email : <input id="email" type="text" name="email"><br><br>
 		First Name : <input id="firstName" type="text" name="firstName"><br><br>
 		Last Name : <input id="lastName" type="text" name="lastName"><br><br>
@@ -55,7 +57,24 @@
 
 			console.log('Everything validated successfully');
 
-			return true;	
+			var http = new XMLHttpRequest();
+			var url = '../php/register.php';
+			var params = 'email='+ email + '&firstName=' + firstName + '&lastName=' + lastName +  '&password='+ password + '&phoneNumber=' + phoneNumber;
+
+			http.open('POST', url, true);
+			//Send the proper header information along with the request
+			http.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+
+			http.onreadystatechange = function() {//Call a function when the state changes.
+				if(http.readyState == 4 && http.status == 200) {
+					alert(http.responseText);
+					console.log('success');
+					// window.location = 'buyonline.htm';
+				}
+			}
+			http.send(params);
+
+			return false;
 		}
 	</script>
-	</html>
+</html>
