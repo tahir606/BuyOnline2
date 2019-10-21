@@ -1,1 +1,75 @@
-listing.htm
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" 
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+	<title>Buy Online</title>
+	<style type="text/css">
+		label {
+			width : 130px;
+			overflow:hidden;
+			display:inline-block;
+			text-overflow: ellipsis;
+			white-space: nowrap;
+		}
+
+		#errorMessage {
+			color: red;
+		}
+	</style>
+</head>
+
+<body>
+	<h3>Buy Online</h3>
+	<h4>Manager Dashboard</h4>
+	<br/>
+	<a id="listing">Listing</a><br/><br/>
+	<a id="processing">Processing</a><br/><br/>
+	<a id="logout">Logout</a><br/><br/>
+	<h4>Add new Item</h4>
+	<form onsubmit="return checkForm()">
+		<label>Item Name: </label><input id="name" type="text" name="name"><br><br>
+		<label>Item Price: </label><input id="price" type="text" name="price"><br><br>
+		<label>Item Quantity: </label><input id="qty" type="text" name="qty"><br><br>
+		<label>Item Description: </label><textarea  id="desc" type="text" name="desc"></textarea><br><br>
+		<p id="errorMessage"></p>
+		<input type="submit" value="Add Item"> <button>Reset</button>
+	</form>
+</body>
+<script type="text/javascript">
+
+	document.getElementById('listing').href = 'listing.htm';
+	document.getElementById('processing').href = 'processing.htm';
+	document.getElementById('logout').href = 'logout.htm';
+
+	function checkForm() {
+		var name = document.getElementById('name').value;
+		var price = document.getElementById('price').value;
+		var qty = document.getElementById('qty').value;
+		var desc = document.getElementById('desc').value;		
+		if (name == '' || price == '' || qty == '' || desc == '') {
+			document.getElementById('errorMessage').innerText = 'All fields must be filled';
+			return false;			
+		}
+
+		var http = new XMLHttpRequest();
+		var url = '../php/listing.php';
+		var params = 'name='+ name + '&price=' + price + '&qty=' + qty +  '&desc='+ desc;
+
+		http.open('POST', url, true);
+			//Send the proper header information along with the request
+			http.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+
+			http.onreadystatechange = function() {//Call a function when the state changes.
+				if(http.readyState == 4 && http.status == 200) {
+					alert(http.responseText);
+					console.log('success');
+				}
+			}
+			http.send(params);
+
+			return false;
+		}
+	</script>
+	</html>

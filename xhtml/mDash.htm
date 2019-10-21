@@ -1,0 +1,26 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" 
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+	<title>Buy Online</title>
+</head>
+
+<body>
+	<h3>Buy Online</h3>
+	<h4>Manager Dashboard</h4>
+	<br/>
+	<a id="listing">Listing</a><br/><br/>
+	<a id="processing">Processing</a>
+</body>
+<script type="text/javascript">
+	// window.onload = alert(localStorage.getItem('user'));
+	var user = parent.document.URL.substring(parent.document.URL.indexOf('?'), parent.document.URL.length);
+	user = user.split('=')[1];
+
+	document.getElementById('listing').href = 'listing.htm?user=' + user;
+	document.getElementById('processing').href = 'processing.htm?user=' + user;
+
+</script>
+</html>

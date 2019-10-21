@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<GoodsList>
+  <Good>
+  	<No>1</No>
+  	<Name>Soap</Name>
+  	<Price>80</Price>
+  	<QtyAvailable>100</QtyAvailable>
+  	<QtyOnHold>20</QtyOnHold>
+  	<QtySold>10</QtySold>
+  	<Description>Soap for washing</Description>
+  </Good>
+</GoodsList>

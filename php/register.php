@@ -25,15 +25,15 @@ if (!emailExists($email)) {
 	$xml = file_get_contents($fileUrl); 
 
 	$xmldoc->loadXML( $xml, LIBXML_NOBLANKS );
-		//Defining XPATH
+	//Defining XPATH
 	$xpath = new DOMXPath($xmldoc);
-		// find the CustomerList tag
+	// find the CustomerList tag
 	$root = $xmldoc->getElementsByTagName('CustomerList')->item(0);
-		// create the <Customer> tag
+	// create the <Customer> tag
 	$customer = $xmldoc->createElement('Customer');
-		// add the Customer tag to the <CustomerList> tag
+	// add the Customer tag to the <CustomerList> tag
 	$root->appendChild($customer);
-		// create other elements and add it to the <Customer> tag.
+	// create other elements and add it to the <Customer> tag.
 
 	$id = generateID($xpath);
 	$idElement = $xmldoc->createElement('Id');

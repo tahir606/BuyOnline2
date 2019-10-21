@@ -5,6 +5,19 @@
 
 <head>
 	<title>Buy Online</title>
+	<style type="text/css">
+		label {
+			width : 130px;
+			overflow:hidden;
+			display:inline-block;
+			text-overflow: ellipsis;
+			white-space: nowrap;
+		}
+
+		#errorMessage {
+			color: red;
+		}
+	</style>
 </head>
 
 <body>
@@ -14,54 +27,55 @@
 	<a href="buyonline.htm">Back</a>
 	<br/><br/><br/>
 	<form onsubmit="return checkForm()">
-		Email : <input id="email" type="text" name="email"><br><br>
-		First Name : <input id="firstName" type="text" name="firstName"><br><br>
-		Last Name : <input id="lastName" type="text" name="lastName"><br><br>
-		Password : <input id="password" type="password" name="password"><br><br>
-		Confirm Password : <input id="confirmPassword" type="password" name="confirmPassword"><br><br>
-		Phone (optional) : <input id="phoneNumber" type="text" name="phoneNumber"><br><br>
+		<label>Email: </label><input id="email" type="text" name="email"><br><br>
+		<label>First Name: </label><input id="firstName" type="text" name="firstName"><br><br>
+		<label>Last Name: </label><input id="lastName" type="text" name="lastName"><br><br>
+		<label>Password: </label><input id="password" type="password" name="password"><br><br>
+		<label>Confirm Password: </label><input id="confirmPassword" type="password" name="confirmPassword"><br><br>
+		<label>Phone (optional): </label><input id="phoneNumber" type="text" name="phoneNumber"><br><br>
 		<input type="submit" value="Register">
 		<p id="errorMessage"></p>
-	</body>
-	<script type="text/javascript">	
-		function checkForm() {
-			var email = document.getElementById('email').value;
-			var firstName = document.getElementById('firstName').value;
-			var lastName = document.getElementById('lastName').value;
-			var password = document.getElementById('password').value;
-			var confirmPassword = document.getElementById('confirmPassword').value;
-			var phoneNumber = document.getElementById('phoneNumber').value;
+	</form>
+</body>
+<script type="text/javascript">	
+	function checkForm() {
+		var email = document.getElementById('email').value;
+		var firstName = document.getElementById('firstName').value;
+		var lastName = document.getElementById('lastName').value;
+		var password = document.getElementById('password').value;
+		var confirmPassword = document.getElementById('confirmPassword').value;
+		var phoneNumber = document.getElementById('phoneNumber').value;
 
-			console.log(email, firstName, lastName, password, confirmPassword, phoneNumber);
+		console.log(email, firstName, lastName, password, confirmPassword, phoneNumber);
 
-			var errorMessage = document.getElementById('errorMessage');
+		var errorMessage = document.getElementById('errorMessage');
 
-			if (email == '' || firstName == '' || lastName == '' || password == '' || confirmPassword == '' ) {	
-				errorMessage.innerText = "All mandatory fields must be filled.";
+		if (email == '' || firstName == '' || lastName == '' || password == '' || confirmPassword == '' ) {	
+			errorMessage.innerText = "All mandatory fields must be filled.";
+			return false;
+		}
+
+		if (password != confirmPassword) {
+			errorMessage.innerText = "Passwords do not match";
+			return false;
+		}
+
+		//Check if phone number only contains numbers
+		//Regex Created with the help of https://regexr.com/3c53v
+		if (phoneNumber != '') {
+			if (!(/^[(]{0,1}[0][0-9]{1,2}[)]{0,1}[\./0-9]{1,8}$/.test(phoneNumber))) {
+				errorMessage.innerText = "Invalid Phone Number. Phone Number must follow the format (0d)dddddddd";
 				return false;
-			}
+			} 
+		}
 
-			if (password != confirmPassword) {
-				errorMessage.innerText = "Passwords do not match";
-				return false;
-			}
+		console.log('Everything validated successfully');
 
-			//Check if phone number only contains numbers
-			//Regex Created with the help of https://regexr.com/3c53v
-			if (phoneNumber != '') {
-				if (!(/^[(]{0,1}[0][0-9]{1,2}[)]{0,1}[\./0-9]{1,8}$/.test(phoneNumber))) {
-					errorMessage.innerText = "Invalid Phone Number. Phone Number must follow the format (0d)dddddddd";
-					return false;
-				} 
-			}
+		var http = new XMLHttpRequest();
+		var url = '../php/register.php';
+		var params = 'email='+ email + '&firstName=' + firstName + '&lastName=' + lastName +  '&password='+ password + '&phoneNumber=' + phoneNumber;
 
-			console.log('Everything validated successfully');
-
-			var http = new XMLHttpRequest();
-			var url = '../php/register.php';
-			var params = 'email='+ email + '&firstName=' + firstName + '&lastName=' + lastName +  '&password='+ password + '&phoneNumber=' + phoneNumber;
-
-			http.open('POST', url, true);
+		http.open('POST', url, true);
 			//Send the proper header information along with the request
 			http.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
 
@@ -69,7 +83,6 @@
 				if(http.readyState == 4 && http.status == 200) {
 					alert(http.responseText);
 					console.log('success');
-					// window.location = 'buyonline.htm';
 				}
 			}
 			http.send(params);
@@ -77,4 +90,4 @@
 			return false;
 		}
 	</script>
-</html>
+	</html>
