@@ -8,4 +8,12 @@
     <Password>123</Password>
     <PhoneNumber/>
   </Customer>
+  <Customer>
+    <Id>1</Id>
+    <Email>tahir606123</Email>
+    <FirstName>Tahir</FirstName>
+    <LastName>Shakir</LastName>
+    <Password>123</Password>
+    <PhoneNumber/>
+  </Customer>
 </CustomerList>

@@ -1,12 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <GoodsList>
   <Good>
-  	<No>1</No>
-  	<Name>Soap</Name>
-  	<Price>80</Price>
-  	<QtyAvailable>100</QtyAvailable>
-  	<QtyOnHold>20</QtyOnHold>
-  	<QtySold>10</QtySold>
-  	<Description>Soap for washing</Description>
+    <Id>1</Id>
+    <Name>Soap</Name>
+    <Price>20</Price>
+    <QtyAvailable>100</QtyAvailable>
+    <QtyOnHold/>
+    <QtySold/>
+    <Description>Soap Stuff</Description>
+  </Good>
+  <Good>
+    <Id>2</Id>
+    <Name>Harpic</Name>
+    <Price>20</Price>
+    <QtyAvailable>1</QtyAvailable>
+    <QtyOnHold></QtyOnHold>
+    <QtySold></QtySold>
+    <Description>adasd</Description>
   </Good>
 </GoodsList>

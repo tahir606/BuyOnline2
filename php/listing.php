@@ -7,8 +7,7 @@ $desc = filter_input(INPUT_POST, 'desc');
 $fileUrl = '../data/goods.xml';
 
 if (!file_exists($fileUrl)) {   
-	createGoodsXML($name, $price, $qty, $desc);   
-	echo "Good Successfully Registered";
+	createGoodsXML($name, $price, $qty, $desc); 
 	die();                  
 }
 
@@ -26,40 +25,50 @@ $xpath = new DOMXPath($xmldoc);
 // find the GoodsList tag
 $root = $xmldoc->getElementsByTagName('GoodsList')->item(0);
 // create the <Good> tag
-$customer = $xmldoc->createElement('Good');
+$good = $xmldoc->createElement('Good');
 // add the Good tag to the <GoodsList> tag
-$root->appendChild($customer);
+$root->appendChild($good);
 // create other elements and add it to the <Good> tag.
 
 $id = generateID($xpath);
 $idElement = $xmldoc->createElement('Id');
-$customer->appendChild($idElement);
+$good->appendChild($idElement);
 $idText = $xmldoc->createTextNode($id);
 $idElement->appendChild($idText);
 
-$emailElement = $xmldoc->createElement('Email');
-$customer->appendChild($emailElement);
-$emailText = $xmldoc->createTextNode($email);
-$emailElement->appendChild($emailText);
+$nameElement = $xmldoc->createElement('Name');
+$good->appendChild($nameElement);
+$nameText = $xmldoc->createTextNode($name);
+$nameElement->appendChild($nameText);
 
-$firstNameElement = $xmldoc->createElement('FirstName');
-$customer->appendChild($firstNameElement);
-$firstNameText = $xmldoc->createTextNode($firstName);
-$firstNameElement->appendChild($firstNameText);
+$priceElement = $xmldoc->createElement('Price');
+$good->appendChild($priceElement);
+$priceText = $xmldoc->createTextNode($price);
+$priceElement->appendChild($priceText);
 
-$lastNameElement = $xmldoc->createElement('LastName');
-$customer->appendChild($lastNameElement);
-$lastNameText = $xmldoc->createTextNode($lastName);
-$lastNameElement->appendChild($lastNameText);
+$quantityElement = $xmldoc->createElement('QtyAvailable');
+$good->appendChild($quantityElement);
+$quantityText = $xmldoc->createTextNode($qty);
+$quantityElement->appendChild($quantityText);
 
-$passwordElement = $xmldoc->createElement('Password');
-$customer->appendChild($passwordElement);
-$passwordText = $xmldoc->createTextNode($password);
-$passwordElement->appendChild($passwordText);
+$qtyonholdElement = $xmldoc->createElement('QtyOnHold');
+$good->appendChild($qtyonholdElement);
+$qtyonholdText = $xmldoc->createTextNode('');
+$qtyonholdElement->appendChild($qtyonholdText);
+
+$qtysoldElement = $xmldoc->createElement('QtySold');
+$good->appendChild($qtysoldElement);
+$qtysoldText = $xmldoc->createTextNode('');
+$qtysoldElement->appendChild($qtysoldText);
+
+$descriptionElement = $xmldoc->createElement('Description');
+$good->appendChild($descriptionElement);
+$descriptionText = $xmldoc->createTextNode($desc);
+$descriptionElement->appendChild($descriptionText);
 
 $xmldoc->save($fileUrl);
 
-echo "Good Successfully Registered";
+echo "Good Successfully Registered at ID: $id";
 exit;
 
 function createGoodsXML($name, $price, $qty, $desc) {
@@ -68,34 +77,41 @@ function createGoodsXML($name, $price, $qty, $desc) {
 	$dom->xmlVersion = '1.0';
 	$dom->formatOutput = true;
 	$xml_file_name = $GLOBALS['fileUrl'];
-	$root = $dom->createElement('CustomerList');
-	$customer_node = $dom->createElement('Customer');
+	$root = $dom->createElement('GoodsList');
+	$good_node = $dom->createElement('Good');
 	
 	$child_node_id = $dom->createElement('Id', '1');
-	$customer_node->appendChild($child_node_id);
+	$good_node->appendChild($child_node_id);
 
-	$child_node_email = $dom->createElement('Email', $email);
-	$customer_node->appendChild($child_node_email);
+	$child_node_name = $dom->createElement('Name', $name);
+	$good_node->appendChild($child_node_name);
 	
-	$child_node_firstName = $dom->createElement('FirstName', $firstName);
-	$customer_node->appendChild($child_node_firstName);
+	$child_node_price = $dom->createElement('Price', $price);
+	$good_node->appendChild($child_node_price);
 
-	$child_node_lastName = $dom->createElement('LastName', $lastName);
-	$customer_node->appendChild($child_node_lastName);
+	$child_node_quantity = $dom->createElement('QtyAvailable', $qty);
+	$good_node->appendChild($child_node_quantity);
 
-	$child_node_password = $dom->createElement('Password', $password);
-	$customer_node->appendChild($child_node_password);
+	$child_node_qtyonhold = $dom->createElement('QtyOnHold', '');
+	$good_node->appendChild($child_node_qtyonhold);
 
-	$root->appendChild($customer_node);
+	$child_node_qtysold = $dom->createElement('QtySold', '');
+	$good_node->appendChild($child_node_qtysold);
+
+	$child_node_description = $dom->createElement('Description', $desc);
+	$good_node->appendChild($child_node_description);
+
+	$root->appendChild($good_node);
 	$dom->appendChild($root);
 	$dom->save($xml_file_name);
-	echo "$xml_file_name has been successfully created<br/>";
+	echo "$xml_file_name has been successfully created\n";
+	echo "Good Successfully Registered at ID: 1";
 }
 
 //Generate ID for new Customer
 //Using XPATH
 function generateID($xpath) {
-	$result = $xpath->query('(//Customer/Id)[last()]');
+	$result = $xpath->query('(//Good/Id)[last()]');
 		// Getting last element
 	if($result->length > 0) {
 		$node = $result->item(0);

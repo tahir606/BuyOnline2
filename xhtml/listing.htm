@@ -34,14 +34,27 @@
 		<label>Item Quantity: </label><input id="qty" type="text" name="qty"><br><br>
 		<label>Item Description: </label><textarea  id="desc" type="text" name="desc"></textarea><br><br>
 		<p id="errorMessage"></p>
-		<input type="submit" value="Add Item"> <button>Reset</button>
+		<input type="submit" value="Add Item"> <button id="reset">Reset</button>
+		<p id="infoMessage"></p>
 	</form>
 </body>
 <script type="text/javascript">
 
+	//Reset Button
+	document.getElementById("reset").addEventListener("click", function(){
+		document.getElementById('name').value = '';
+		document.getElementById('price').value = '';
+		document.getElementById('qty').value = '';
+		document.getElementById('desc').value = '';
+		return false;
+	});
+
+	var user = parent.document.URL.substring(parent.document.URL.indexOf('?'), parent.document.URL.length);
+	user = user.split('=')[1];
+
 	document.getElementById('listing').href = 'listing.htm';
 	document.getElementById('processing').href = 'processing.htm';
-	document.getElementById('logout').href = 'logout.htm';
+	document.getElementById('logout').href = 'logout.htm?user='+user;
 
 	function checkForm() {
 		var name = document.getElementById('name').value;
@@ -53,23 +66,27 @@
 			return false;			
 		}
 
+		if (!(/^\d+$/.test(price)) || !(/^\d+$/.test(qty))) {
+			document.getElementById('errorMessage').innerText = 'Quantity and Price must only contain numbers.';
+			return false;	
+		}
+
 		var http = new XMLHttpRequest();
 		var url = '../php/listing.php';
 		var params = 'name='+ name + '&price=' + price + '&qty=' + qty +  '&desc='+ desc;
 
 		http.open('POST', url, true);
-			//Send the proper header information along with the request
-			http.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+		//Send the proper header information along with the request
+		http.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
 
-			http.onreadystatechange = function() {//Call a function when the state changes.
-				if(http.readyState == 4 && http.status == 200) {
-					alert(http.responseText);
-					console.log('success');
-				}
+		http.onreadystatechange = function() {//Call a function when the state changes.
+			if(http.readyState == 4 && http.status == 200) {
+				document.getElementById('infoMessage').innerText = http.responseText;			
 			}
-			http.send(params);
-
-			return false;
 		}
-	</script>
-	</html>
+		http.send(params);
+
+		return false;
+	}
+</script>
+</html>

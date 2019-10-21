@@ -22,7 +22,7 @@ if (!emailExists($email)) {
 	$xmldoc->preserveWhiteSpace = false;
 	$xmldoc->formatOutput = true;
 
-	$xml = file_get_contents($fileUrl); 
+	$xml = file_get_contents($fileUrl);
 
 	$xmldoc->loadXML( $xml, LIBXML_NOBLANKS );
 	//Defining XPATH
