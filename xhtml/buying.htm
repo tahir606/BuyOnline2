@@ -100,7 +100,8 @@
 				cell.innerHTML = '<button id="rowBtn' + i +'">Add to Cart</button';
 
 				document.getElementById('rowBtn'+i).addEventListener("click", function(){
-					console.log('on click ' + i);
+					console.log(this.id);
+					console.log(document.getElementById(this.id).parentElement.parentElement);
 				});
 			}
 			
