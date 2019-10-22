@@ -29,83 +29,28 @@
 	</table>
 	<br/><br/>
 	<h4>Shopping Cart</h4>
-	<table style="width:60%">
-		<tr style="text-align: left;">
-			<th>Item Number</th>
-			<th>Price</th>
-			<th>Quantity</th>
-			<th>Remove</th>
-		</tr>
-		<tr>
-			<td>1</td>
-			<td>20</td>
-			<td>100</td>
-			<td><button>Remove from cart</button></td>
-		</tr>
-		<tr>
-			<td></td>
-			<td></td>
-			<td>Total</td>
-			<td>100</td>
-		</tr>
+	<table id="cartTable" style="width:60%">
+		<thead>
+			<tr style="text-align: left;">
+				<th>Item Number</th>
+				<th>Price</th>
+				<th>Quantity</th>
+				<th>Remove</th>
+			</tr>
+		</thead>
+		<tbody></tbody>
+		<tfoot>
+			<tr>
+				<td></td>
+				<td></td>
+				<td>Total</td>
+				<td>100</td>
+			</tr>
+		</tfoot>		
 	</table>
 	<button>Confirm Purchase</button>
 	<button>Cancel Purchase</button>
 
 </body>
-<script type="text/javascript">
-
-	var user = parent.document.URL.substring(parent.document.URL.indexOf('?'), parent.document.URL.length);
-	user = user.split('=')[1];
-
-	document.getElementById('logout').href = 'logout.htm?user='+user;
-
-	var table = document.querySelector("#itemTable tbody");
-
-	getItems();
-
-	// time=setInterval(function(){
-	// 	//your code
-	// 	// console.log('Interval');
-	// },5000);
-
-	function getItems() {
-		var http = new XMLHttpRequest();
-		var url = '../php/items.php';
-
-		http.open('GET', url, true);
-			//Send the proper header information along with the request
-			http.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-
-			http.onreadystatechange = function() {//Call a function when the state changes.
-				if(http.readyState == 4 && http.status == 200) {
-					var items = http.responseText.split('\n');
-					displayItems(items);
-				}
-			}
-			http.send();
-		}
-
-		function displayItems(items) {
-			for (var i = 0; i < items.length; i++) {
-				if (items[i] == '') { continue; }
-				var item = items[i].split(",");
-				console.log(item);
-				var tr = table.insertRow(i);
-				item.forEach((k, j) => { // Keys from object represent th.innerHTML
-					var cell = tr.insertCell(j);
-      				cell.innerHTML = k; // Assign object values to cells   
-      			});
-				var cell = tr.insertCell();
-				cell.innerHTML = '<button id="rowBtn' + i +'">Add to Cart</button';
-
-				document.getElementById('rowBtn'+i).addEventListener("click", function(){
-					console.log(this.id);
-					console.log(document.getElementById(this.id).parentElement.parentElement);
-				});
-			}
-			
-		}
-
-	</script>
-	</html>
+<script type="text/javascript" src="../js/buying.js"></script>
+</html>
