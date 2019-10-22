@@ -4,18 +4,27 @@
     <Id>1</Id>
     <Name>SouuupHarpicCh</Name>
     <Price>20</Price>
-    <QtyAvailable>100</QtyAvailable>
-    <QtyOnHold/>
-    <QtySold/>
+    <QtyAvailable>92</QtyAvailable>
+    <QtyOnHold>0</QtyOnHold>
+    <QtySold>8</QtySold>
     <Description>Soap Stuff</Description>
   </Good>
   <Good>
     <Id>2</Id>
     <Name>Harpic</Name>
     <Price>200</Price>
-    <QtyAvailable>10</QtyAvailable>
-    <QtyOnHold/>
-    <QtySold/>
+    <QtyAvailable>192</QtyAvailable>
+    <QtyOnHold>0</QtyOnHold>
+    <QtySold>8</QtySold>
     <Description>adasd</Description>
+  </Good>
+  <Good>
+    <Id>3</Id>
+    <Name>Pampers</Name>
+    <Price>100</Price>
+    <QtyAvailable>492</QtyAvailable>
+    <QtyOnHold>0</QtyOnHold>
+    <QtySold>8</QtySold>
+    <Description>Tumhi tu ho</Description>
   </Good>
 </GoodsList>

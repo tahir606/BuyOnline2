@@ -1,4 +1,4 @@
-<?php  
+<?php
 $item = filter_input(INPUT_POST, 'item');
 
 $fileUrl = '../data/goods.xml';
@@ -8,22 +8,24 @@ $xml->formatOutput = true;
 $xml->preserveWhiteSpace = false;
 $xml->load($fileUrl);
 
- //Get item Element
+//Get item Element
 $element = $xml->getElementsByTagName('Good')->item($item-1);  
 
- //Load child elements
-$QtyAvailable = $element->getElementsByTagName('QtyAvailable')->item(0);
+//Load child elements
 $QtyOnHold = $element->getElementsByTagName('QtyOnHold')->item(0);
+$QtySold = $element->getElementsByTagName('QtySold')->item(0);
 
-$QtyAvailable->nodeValue = $QtyAvailable->nodeValue - 1;
-if ($QtyOnHold->nodeValue === '') {
-	$QtyOnHold->nodeValue = 0;
+if ($QtySold->nodeValue == '') {
+	$QtySold->nodeValue = 0;
 }
-$QtyOnHold->nodeValue = $QtyOnHold->nodeValue + 1;
+$QtySold->nodeValue = $QtySold->nodeValue + $QtyOnHold->nodeValue;
+$QtyOnHold->nodeValue = 0;
 
 //Replace old elements with new
-$element->replaceChild($QtyAvailable, $QtyAvailable);
+$element->replaceChild($QtySold, $QtySold);
 $element->replaceChild($QtyOnHold, $QtyOnHold);
 
 $xml->save($fileUrl);
+
+echo "\nMarked sold for".$item;
 ?>

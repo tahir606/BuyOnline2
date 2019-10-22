@@ -75,3 +75,29 @@ $availableAttribute->value = $content;
 $availableElement->appendChild($availableAttribute);
 
 $xmldoc->save('main.xml');
+
+
+//Loop XMLHTTP REQUEST
+//Adding function inside loop to run each xmlhttprequest seperately
+	//Reference: https://stackoverflow.com/questions/25220486/xmlhttprequest-in-for-loop
+	var http = [], i; 
+	for (i = 0; i < cartItems.length; i++) {
+		(function(i) {
+			console.log('trying for: ' + cartItems[i].item);
+			http[i] = new XMLHttpRequest();
+			var url = '../php/confirmPurchase.php';
+			var params = 'item='+ cartItems[i].item;
+
+			http[i].open('POST', url, true);
+			//Send the proper header information along with the request
+			http[i].setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+			http[i].onreadystatechange = function() {//Call a function when the state changes.
+				if(http[i].readyState == 4 && http[i].status == 200) {
+					console.log(http[i].responseText);
+					// if (i == cartItems.length-1) {
+					// 	infoMessage.innerHTML = "Your purchase has been confirmed and total amount due to pay is " + document.getElementById('total').innerHTML;
+					// }
+				}
+			}
+			http[i].send(params);
+		})(i);
