@@ -2,7 +2,7 @@
 <GoodsList>
   <Good>
     <Id>1</Id>
-    <Name>Soap</Name>
+    <Name>SouuupHarpicCh</Name>
     <Price>20</Price>
     <QtyAvailable>100</QtyAvailable>
     <QtyOnHold/>
@@ -14,8 +14,8 @@
     <Name>Harpic</Name>
     <Price>200</Price>
     <QtyAvailable>10</QtyAvailable>
-    <QtyOnHold></QtyOnHold>
-    <QtySold></QtySold>
+    <QtyOnHold/>
+    <QtySold/>
     <Description>adasd</Description>
   </Good>
 </GoodsList>
