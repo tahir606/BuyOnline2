@@ -5,32 +5,34 @@
 
 <head>
 	<title>Buy Online</title>
+	<link rel = "stylesheet" type = "text/css" href = "styles.css" />
 </head>
 
 <body>
-	<h3>Buy Online</h3>
-	<h4>Manager Login</h4>
+	<br/>
+	<h2>Buy Online</h2>
+	<h2>Customer Login</h2>
 	<br/>
 	<form onsubmit="return submitForm()">
-		User ID : <input id="user" type="text" name="user"><br><br>
-		Password : <input id="password" type="password" name="password"><br><br>
-		<input type="submit" value="Register">
+		<label>Email : </label><input id="email" type="text" name="email"><br><br>
+		<label>Password : </label><input id="password" type="password" name="password"><br><br>
+		<input type="submit" class="button" value="Login">
 		<p id="errorMessage"></p>
 	</form>
 </body>
 <script type="text/javascript">	
 	function submitForm() {
-		var user = document.getElementById('user').value;
+		var email = document.getElementById('email').value;
 		var password = document.getElementById('password').value;
 
-		if (user == '' || password == '') {	
+		if (email == '' || password == '') {	
 			errorMessage.innerText = "All fields must be filled.";
 			return false;
 		}	
 
 		var http = new XMLHttpRequest();
-		var url = '../php/mlogin.php';
-		var params = 'user='+ user + '&password=' + password;
+		var url = 'login.php';
+		var params = 'email='+ email + '&password=' + password;
 
 		http.open('POST', url, true);
 			//Send the proper header information along with the request
@@ -38,8 +40,9 @@
 
 			http.onreadystatechange = function() {//Call a function when the state changes.
 				if(http.readyState == 4 && http.status == 200) {
-					window.location.href = 'mDash.htm?user='+user;	
-				} else if(http.readyState == 4 && http.status == 404) {				
+					localStorage.setItem('email', 'bruh');
+					window.location.href = 'buying.htm?email='+http.responseText;	
+				} else if(http.readyState == 4 && http.status == 401) {				
 					document.getElementById('errorMessage').innerText = 'Incorrect ID or Password';
 				}
 			}

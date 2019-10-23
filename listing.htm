@@ -5,36 +5,43 @@
 
 <head>
 	<title>Buy Online</title>
+	<link rel = "stylesheet" type = "text/css" href = "styles.css" />
 	<style type="text/css">
-		label {
-			width : 130px;
-			overflow:hidden;
-			display:inline-block;
-			text-overflow: ellipsis;
-			white-space: nowrap;
+		form {
+			border: 2px solid black;
+			border-collapse: collapse;
+			padding: 5px;
+			width:50%;
+			padding: 5px;
 		}
-
-		#errorMessage {
-			color: red;
+		label {
+			padding: 2px;
+		}
+		input {
+			padding: 5px;
+		}
+		.button, button {
+			margin-left: 10px;
+			margin-right: 10px;
 		}
 	</style>
 </head>
 
 <body>
-	<h3>Buy Online</h3>
-	<h4>Manager Dashboard</h4>
+	<h2>Buy Online</h2>
+	<h2>Manager Dashboard</h2>
 	<br/>
 	<a id="listing">Listing</a><br/><br/>
 	<a id="processing">Processing</a><br/><br/>
 	<a id="logout">Logout</a><br/><br/>
-	<h4>Add new Item</h4>
+	<h2>Add new Item</h2>
 	<form onsubmit="return checkForm()">
 		<label>Item Name: </label><input id="name" type="text" name="name"><br><br>
 		<label>Item Price: </label><input id="price" type="text" name="price"><br><br>
 		<label>Item Quantity: </label><input id="qty" type="text" name="qty"><br><br>
 		<label>Item Description: </label><textarea  id="desc" type="text" name="desc"></textarea><br><br>
 		<p id="errorMessage"></p>
-		<input type="submit" value="Add Item"> <button id="reset">Reset</button>
+		<input class="button" type="submit" value="Add Item"> <button id="reset">Reset</button>
 		<p id="infoMessage"></p>
 	</form>
 </body>
@@ -51,6 +58,10 @@
 
 	var user = parent.document.URL.substring(parent.document.URL.indexOf('?'), parent.document.URL.length);
 	user = user.split('=')[1];
+
+	if (user == undefined) {
+		window.location = 'buyonline.htm';
+	}
 
 	document.getElementById('listing').href = 'listing.htm';
 	document.getElementById('processing').href = 'processing.htm';
@@ -72,7 +83,7 @@
 		}
 
 		var http = new XMLHttpRequest();
-		var url = '../php/listing.php';
+		var url = 'listing.php';
 		var params = 'name='+ name + '&price=' + price + '&qty=' + qty +  '&desc='+ desc;
 
 		http.open('POST', url, true);
@@ -81,7 +92,8 @@
 
 		http.onreadystatechange = function() {//Call a function when the state changes.
 			if(http.readyState == 4 && http.status == 200) {
-				document.getElementById('infoMessage').innerText = http.responseText;			
+				document.getElementById('infoMessage').innerText = http.responseText;
+				document.getElementById('errorMessage').innerText = '';			
 			}
 		}
 		http.send(params);

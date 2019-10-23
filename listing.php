@@ -4,7 +4,7 @@ $price = filter_input(INPUT_POST, 'price');
 $qty = filter_input(INPUT_POST, 'qty');
 $desc = filter_input(INPUT_POST, 'desc');
 
-$fileUrl = '../data/goods.xml';
+$fileUrl = '../../data/goods.xml';
 
 if (!file_exists($fileUrl)) {   
 	createGoodsXML($name, $price, $qty, $desc); 

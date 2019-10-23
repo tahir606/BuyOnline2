@@ -2,7 +2,7 @@
 $email = filter_input(INPUT_POST, 'email');
 $password = filter_input(INPUT_POST, 'password');
 
-$fileUrl = '../data/customer.xml';
+$fileUrl = '../../data/customer.xml';
 
 $handle = fopen($fileUrl, "r");
 if (authenticate($email, $password) != 'invalid') {

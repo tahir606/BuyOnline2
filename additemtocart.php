@@ -1,7 +1,7 @@
 <?php  
 $item = filter_input(INPUT_POST, 'item');
 
-$fileUrl = '../data/goods.xml';
+$fileUrl = '../../data/goods.xml';
 
 $xml = new DOMDocument('1.0', 'utf-8');
 $xml->formatOutput = true; 

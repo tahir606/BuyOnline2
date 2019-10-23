@@ -85,7 +85,7 @@ $xmldoc->save('main.xml');
 		(function(i) {
 			console.log('trying for: ' + cartItems[i].item);
 			http[i] = new XMLHttpRequest();
-			var url = '../php/confirmPurchase.php';
+			var url = 'confirmPurchase.php';
 			var params = 'item='+ cartItems[i].item;
 
 			http[i].open('POST', url, true);

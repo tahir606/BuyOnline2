@@ -1,0 +1,121 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" 
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+	<title>Buy Online</title>
+	<style type="text/css">
+		label {
+			width : 140px;
+			overflow:hidden;
+			display:inline-block;
+			text-overflow: ellipsis;
+			white-space: nowrap;
+		}
+		#errorMessage {
+			color: red;
+			font-size: 18px;
+			font-weight: bold;
+		}
+		h2 {
+			font-weight: bold;
+		}
+		body {
+			font-family: Calibri;
+		}
+		a {
+			font-size: 18px;
+		}
+		.button {
+			border: none;
+			padding: 10px 12px;
+			font-size: 14px;
+		}
+	</style>
+</head>
+
+<body>
+	<br/>
+	<h2>Buy Online</h3>
+		<h2>Customer Registration</h4>
+			<br/>
+			<a href="buyonline.htm">Back</a>
+			<br/><br/><br/>
+			<form onsubmit="return checkForm()">
+				<label>Email: </label><input id="email" type="text" name="email"><br><br>
+				<label>First Name: </label><input id="firstName" type="text" name="firstName"><br><br>
+				<label>Last Name: </label><input id="lastName" type="text" name="lastName"><br><br>
+				<label>Password: </label><input id="password" type="password" name="password"><br><br>
+				<label>Confirm Password: </label><input id="confirmPassword" type="password" name="confirmPassword"><br><br>
+				<label>Phone (optional): </label><input id="phoneNumber" type="text" name="phoneNumber"><br><br>
+				<input type="submit" class="button" value="Register">
+				<p id="errorMessage"></p>
+			</form>
+		</body>
+		<script type="text/javascript">	
+			function checkForm() {
+				var email = document.getElementById('email').value;
+				var firstName = document.getElementById('firstName').value;
+				var lastName = document.getElementById('lastName').value;
+				var password = document.getElementById('password').value;
+				var confirmPassword = document.getElementById('confirmPassword').value;
+				var phoneNumber = document.getElementById('phoneNumber').value;
+
+				console.log(email, firstName, lastName, password, confirmPassword, phoneNumber);
+
+				var errorMessage = document.getElementById('errorMessage');
+
+				if (email == '' || firstName == '' || lastName == '' || password == '' || confirmPassword == '' ) {	
+					errorMessage.innerText = "All mandatory fields must be filled.";
+					return false;
+				}
+
+				if (!validateEmail(email)) {
+					errorMessage.innerText = "Email is invalid";
+					return false;
+				}
+
+				if (password != confirmPassword) {
+					errorMessage.innerText = "Passwords do not match";
+					return false;
+				}
+
+		//Check if phone number only contains numbers
+		//Regex Created with the help of https://regexr.com/3c53v
+		if (phoneNumber != '') {
+			if (!(/^[(]{0,1}[0][0-9]{1,2}[)]{0,1}[\./0-9]{1,8}$/.test(phoneNumber))) {
+				errorMessage.innerText = "Invalid Phone Number. Phone Number must follow the format (0d)dddddddd";
+				return false;
+			} 
+		}
+
+		console.log('Everything validated successfully');
+
+		var http = new XMLHttpRequest();
+		var url = 'register.php';
+		var params = 'email='+ email + '&firstName=' + firstName + '&lastName=' + lastName +  '&password='+ password + '&phoneNumber=' + phoneNumber;
+
+		http.open('POST', url, true);
+			//Send the proper header information along with the request
+			http.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+
+			http.onreadystatechange = function() {//Call a function when the state changes.
+				if(http.readyState == 4 && http.status == 200) {
+					errorMessage.innerText = "";
+					alert(http.responseText);
+				}
+			}
+			http.send(params);
+
+			return false;
+		}
+
+		//Email Validation
+		//Reference: https://stackoverflow.com/questions/46155/how-to-validate-an-email-address-in-javascript
+		function validateEmail(email) {
+			var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+			return re.test(email);
+		}
+	</script>
+	</html>

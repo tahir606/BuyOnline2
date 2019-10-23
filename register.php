@@ -6,7 +6,7 @@ $password = filter_input(INPUT_POST, 'password');
 $confirmPassword = filter_input(INPUT_POST, 'confirmPassword');
 $phoneNumber = filter_input(INPUT_POST, 'phoneNumber');
 
-$fileUrl = '../data/customer.xml';
+$fileUrl = '../../data/customer.xml';
 
 if (!file_exists($fileUrl)) {   
 	createCustomerXML($email, $firstName, $lastName, $password, $phoneNumber);   

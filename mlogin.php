@@ -2,7 +2,7 @@
 $user = filter_input(INPUT_POST, 'user');
 $password = filter_input(INPUT_POST, 'password');
 
-$fileUrl = '../data/manager.txt';
+$fileUrl = '../../data/manager.txt';
 
 $handle = fopen($fileUrl, "r");
 if ($handle) {

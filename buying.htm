@@ -1,0 +1,73 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" 
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+	<title>Buy Online</title>
+	<link rel = "stylesheet" type = "text/css" href = "styles.css" />
+	<style type="text/css">
+		table, th, td {
+			border: 2px solid black;
+			border-collapse: collapse;
+			padding: 5px;
+		}
+		thead {
+			background: grey;
+			border: 4px solid black;
+			border-collapse: collapse;	
+		}
+		button {
+			border: none;
+			padding: 10px 12px;
+			font-size: 14px;
+		}
+	</style>
+</head>
+<body>
+	<h2>Buy Online</h3>
+		<a id="logout">Logout</a>
+		<h2>Shopping Catalog</h4>
+			<br/>
+			<table id="itemTable" style="width:100%">
+				<thead>
+					<tr style="text-align: left;">
+						<th>Item Number</th>
+						<th>Name</th>
+						<th>Description</th>
+						<th>Price</th>
+						<th>Quantity</th>
+						<th>Add</th>
+					</tr>
+				</thead>
+				<tbody></tbody>
+			</table>
+			<br/><br/>
+			<h4>Shopping Cart</h4>
+			<table id="cartTable" style="width:60%">
+				<thead>
+					<tr style="text-align: left;">
+						<th>Item Number</th>
+						<th>Price</th>
+						<th>Quantity</th>
+						<th>Remove</th>
+					</tr>
+				</thead>
+				<tbody></tbody>
+				<tfoot>
+					<tr>
+						<td></td>
+						<td></td>
+						<td><b>Total</b></td>
+						<td id="total">0</td>
+					</tr>
+				</tfoot>		
+			</table>
+			<br/>
+			<button id="btnConfirm">Confirm Purchase</button>
+			<button id="btnCancel" style="margin-left: 10%">Cancel Purchase</button>
+			<br/><br/>
+			<p id="infoMessage"></p>
+			<script type="text/javascript" src="buying.js"></script>
+		</body>
+		</html>

@@ -5,11 +5,12 @@
 
 <head>
 	<title>Buy Online</title>
+	<link rel = "stylesheet" type = "text/css" href = "styles.css" />
 </head>
 
 <body>
-	<h3>Buy Online</h3>
-	<h4>Manager Dashboard</h4>
+	<h2>Buy Online</h2>
+	<h2>Manager Dashboard</h2>
 	<br/>
 	<a id="listing">Listing</a><br/><br/>
 	<a id="processing">Processing</a>
@@ -18,6 +19,10 @@
 	// window.onload = alert(localStorage.getItem('user'));
 	var user = parent.document.URL.substring(parent.document.URL.indexOf('?'), parent.document.URL.length);
 	user = user.split('=')[1];
+
+	if (user == undefined) {
+		window.location = 'buyonline.htm';
+	}
 
 	document.getElementById('listing').href = 'listing.htm?user=' + user;
 	document.getElementById('processing').href = 'processing.htm?user=' + user;
