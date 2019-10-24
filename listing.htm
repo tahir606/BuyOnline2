@@ -63,8 +63,8 @@
 		window.location = 'buyonline.htm';
 	}
 
-	document.getElementById('listing').href = 'listing.htm';
-	document.getElementById('processing').href = 'processing.htm';
+	document.getElementById('listing').href = 'listing.htm?user='+user;
+	document.getElementById('processing').href = 'processing.htm?user='+user;
 	document.getElementById('logout').href = 'logout.htm?user='+user;
 
 	function checkForm() {

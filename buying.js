@@ -29,7 +29,7 @@ document.getElementById('btnCancel').addEventListener("click", function(){
 getItems();
 time=setInterval(function(){
 	getItems();
-},5000);
+},3000);
 
 var items;
 
@@ -56,7 +56,7 @@ function getItems() {
 	}
 	for (var i = 0; i < items.length; i++) {
 		if (items[i] == '') { continue; }
-		var item = items[i].split(",");
+		var item = items[i].split("*");
 		var tr = table.insertRow(i);
 			//k = element, j = index					
 			item.forEach((k, j) => { // Keys from object represent th.innerHTML
@@ -81,7 +81,7 @@ function getItems() {
 	var cartItems = [];
 
 	function addToCart(row) {
-		var item = items[row].split(',')	
+		var item = items[row].split('*')	
 		for (var i = 0; i < cartItems.length; i++) {
 			if (cartItems[i].item == item[0]) {
 				cartExistingItem(cartItems[i]);
@@ -98,7 +98,7 @@ function getItems() {
 //Adding to cart if the item is new
 function cartNewItem(row) {
 	//New Item
-	var item = items[row].split(',');
+	var item = items[row].split('*');
 	var tr = tableCart.insertRow();
 	//itemNo
 	var cellNo = tr.insertCell();

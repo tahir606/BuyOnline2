@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<GoodsList>
+  <Good>
+    <Id>1</Id>
+    <Name>Soup</Name>
+    <Price>20</Price>
+    <QtyAvailable>SoldOut</QtyAvailable>
+    <QtyOnHold>0</QtyOnHold>
+    <QtySold>0</QtySold>
+    <Description>Soap Stuff</Description>
+  </Good>
+  <Good>
+    <Id>2</Id>
+    <Name>Harpic</Name>
+    <Price>200</Price>
+    <QtyAvailable>-10</QtyAvailable>
+    <QtyOnHold>15</QtyOnHold>
+    <QtySold>0</QtySold>
+    <Description>adasd</Description>
+  </Good>
+  <Good>
+    <Id>3</Id>
+    <Name>Pampers</Name>
+    <Price>100</Price>
+    <QtyAvailable>482</QtyAvailable>
+    <QtyOnHold>1</QtyOnHold>
+    <QtySold>0</QtySold>
+    <Description>Tumhi tu ho</Description>
+  </Good>
+  <Good>
+    <Id>4</Id>
+    <Name>Towels</Name>
+    <Price>400</Price>
+    <QtyAvailable>30</QtyAvailable>
+    <QtyOnHold/>
+    <QtySold/>
+    <Description>Towel Wipes</Description>
+  </Good>
+  <Good>
+    <Id>5</Id>
+    <Name>Sabun</Name>
+    <Price>200</Price>
+    <QtyAvailable>34</QtyAvailable>
+    <QtyOnHold/>
+    <QtySold/>
+    <Description>35</Description>
+  </Good>
+  <Good>
+    <Id>6</Id>
+    <Name>Laptop</Name>
+    <Price>20000</Price>
+    <QtyAvailable>24</QtyAvailable>
+    <QtyOnHold/>
+    <QtySold/>
+    <Description>23</Description>
+  </Good>
+  <Good>
+    <Id>7</Id>
+    <Name>Laptop35</Name>
+    <Price>350000</Price>
+    <QtyAvailable>24</QtyAvailable>
+    <QtyOnHold></QtyOnHold>
+    <QtySold></QtySold>
+    <Description>as</Description>
+  </Good>
+</GoodsList>

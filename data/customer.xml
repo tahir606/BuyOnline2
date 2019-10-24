@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomerList>
+  <Customer>
+    <Id>1</Id>
+    <Email>tahir606123</Email>
+    <FirstName>Tahir</FirstName>
+    <LastName>Shakir</LastName>
+    <Password>123</Password>
+    <PhoneNumber/>
+  </Customer>
+  <Customer>
+    <Id>2</Id>
+    <Email>tahir60652@gmail.com</Email>
+    <FirstName>Tahir</FirstName>
+    <LastName>Shakir</LastName>
+    <Password>123</Password>
+    <PhoneNumber/>
+  </Customer>
+  <Customer>
+    <Id>3</Id>
+    <Email>tahir6061234</Email>
+    <FirstName>adas</FirstName>
+    <LastName>adad</LastName>
+    <Password>123</Password>
+    <PhoneNumber/>
+  </Customer>
+  <Customer>
+    <Id>4</Id>
+    <Email>tahir606123@gmail.com</Email>
+    <FirstName>ad</FirstName>
+    <LastName>zcx</LastName>
+    <Password>123</Password>
+    <PhoneNumber></PhoneNumber>
+  </Customer>
+</CustomerList>

@@ -44,7 +44,7 @@ function getItems() {
 	itemsArr = [];
 	for (var i = 0; i < items.length; i++) {
 		if (items[i] == '') { continue; }
-		var item = items[i].split(",");
+		var item = items[i].split("*");
 		var tr = table.insertRow(i);
 			//k = element, j = index					
 			item.forEach((k, j) => { // Keys from object represent th.innerHTML

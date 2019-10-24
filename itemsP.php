@@ -13,7 +13,7 @@ for ($i = 0; $i < count($list); $i++) {
 	$q = $list[$i]->QtyOnHold;
 	$s = $list[$i]->QtySold;
 	if ($s > 0) {		
-		echo $id.",".$n.",".$d.",".$p.",".$q.",".$s;
+		echo $id."*".$n."*".$d."*".$p."*".$q."*".$s;
 		echo "\n";
 	}
 }

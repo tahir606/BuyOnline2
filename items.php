@@ -12,7 +12,7 @@ for ($i = 0; $i < count($list); $i++) {
 	$p = $list[$i]->Price;
 	$q = $list[$i]->QtyAvailable;
 	if ($q > 0) {		
-		echo $id.",".$n.",".$d.",".$p.",".$q;
+		echo $id."*".$n."*".$d."*".$p."*".$q;
 		echo "\n";
 	}
 }
